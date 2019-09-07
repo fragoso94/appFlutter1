@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app_flutter1/pantallaDos.dart';
 
 const List<String> colors = ["ffef5777","ff4bcffa","ffffffff", "ff4bcffa","ff0be881","ffef5777","ff4bcffa", "ff0be881"];
 
@@ -28,6 +27,21 @@ Widget buidElements(int index){
   );
 }
 
+/*class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mi primera app"),
+      ),
+      body: ListView.builder(
+        itemCount: colors.length,
+        itemBuilder: (context, index) => buidElements(index),
+      )
+
+    ); 
+  }
+}*/
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,11 +72,8 @@ class MyApp extends StatelessWidget {
                 title: Text("Menu 1"),
                 trailing: Icon(Icons.contacts),
                 onTap: (){
-                    Navigator.of(context).pop(); //cierra el Sidemenu y después carga la siguiente vista
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context)=> PantallaDos()
-                  ));
-                  print("cambiando a la siguiente vista..");
+                  
+                  print("Menu 1 ha sido seleccionados");
                 },
               )
             ],

@@ -1,0 +1,32 @@
+class AlertDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: RaisedButton(
+          child: Text("Lanzar alerta"),
+          onPressed: (){
+            return showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  title: Text("Soy una alerta"),
+                  content: Text("a ourrido un error :("),
+                  action: <Widget>[
+                    RaisedButton(
+                      child: Text("Accion", style: TextStyle(color: Colors.green),),
+                      onPressed: (){
+                        print("se ha presionado");
+                      },
+                    )
+                  ]
+                );
+              }
+            ); //showDialog
+          },
+        ),
+      ),
+    );
+  }
+}

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app_flutter1/pantallaDos.dart';
 
 const List<String> colors = ["ffef5777","ff4bcffa","ffffffff", "ff4bcffa","ff0be881","ffef5777","ff4bcffa", "ff0be881"];
+final  GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
 void main(){
   runApp(MaterialApp(
@@ -28,12 +28,28 @@ Widget buidElements(int index){
   );
 }
 
+/*class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mi primera app"),
+      ),
+      body: ListView.builder(
+        itemCount: colors.length,
+        itemBuilder: (context, index) => buidElements(index),
+      )
+
+    ); 
+  }
+}*/
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        key: _scaffoldkey,
         appBar: AppBar(
           title: Text("Mi tab bar"),
           bottom: TabBar(
@@ -46,37 +62,24 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero, //elimina los margenes
-            children: <Widget>[
-              DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: Image.network("https://picsum.photos/250?image=9"),
-                ),
-              ListTile(
-                title: Text("Menu 1"),
-                trailing: Icon(Icons.contacts),
-                onTap: (){
-                    Navigator.of(context).pop(); //cierra el Sidemenu y después carga la siguiente vista
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context)=> PantallaDos()
-                  ));
-                  print("cambiando a la siguiente vista..");
-                },
-              )
-            ],
+        body: Center(
+        child: RaisedButton(
+          child: Text("Lanzar SnackBar"),
+          onPressed: (){
+             final snackBar = SnackBar(
+            content: Text("soy un mensaje de SnackBar"),
+            action: SnackBarAction(
+             label: "Acción",
+             onPressed: (){
+               print("Soy una acción del SnackBar");
+             }, 
             ),
-        ),
-        body: TabBarView(children: <Widget>[
-          //imprimir widget Snackbar
-          Icon(Icons.smartphone, size: 200.0,),
-          ListView.builder(
-            itemCount: colors.length,
-            itemBuilder: (context, index) => buidElements(index),
-          ),
-          Icon(Icons.contacts, size: 200.0,),
-        ],),
+          );
+          _scaffoldkey.currentState.showSnackBar(snackBar);
+          },
+        )
+      )
+      
       ),
     );
   }
