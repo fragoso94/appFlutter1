@@ -2,6 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PantallaDos extends StatelessWidget{
+  final String datosRecibidos;
+  final String mensaje = "Estos datos son de la pantalla Dos";
+
+  //constructor
+  PantallaDos(
+    {
+      Key key, @required this.datosRecibidos
+    }
+  );
 
  Widget build(BuildContext context){
     return Scaffold(
@@ -10,13 +19,17 @@ class PantallaDos extends StatelessWidget{
       ),
 
       body: Center(
-        child: RaisedButton(
-            child: Text("Regresar"),
-            onPressed: (){
-              Navigator.pop(context);
-            },
-          ),
-        
+        child: Column(
+          children: <Widget>[ 
+           RaisedButton(
+             child: Text("Regresar"),
+             onPressed: (){
+                Navigator.pop(context, mensaje);
+             },
+           ),
+           Text("Data:" + datosRecibidos),
+          ],
+        )
       ),
 
     );

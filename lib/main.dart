@@ -57,12 +57,15 @@ class MyApp extends StatelessWidget {
               ListTile(
                 title: Text("Menu 1"),
                 trailing: Icon(Icons.contacts),
-                onTap: (){
+                onTap: () async {
                     Navigator.of(context).pop(); //cierra el Sidemenu y después carga la siguiente vista
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context)=> PantallaDos()
+                    var datos = await Navigator.push(context, 
+                    MaterialPageRoute(builder: (context)=> PantallaDos(
+                      datosRecibidos: "Datos de la pantalla 1",
+                    )
                   ));
-                  print("cambiando a la siguiente vista..");
+                  //print("cambiando a la siguiente vista..");
+                  print(datos);
                 },
               )
             ],
@@ -73,7 +76,9 @@ class MyApp extends StatelessWidget {
           Icon(Icons.smartphone, size: 200.0,),
           ListView.builder(
             itemCount: colors.length,
-            itemBuilder: (context, index) => buidElements(index),
+            itemBuilder: (context, index) => 
+              buidElements(index),
+            
           ),
           Icon(Icons.contacts, size: 200.0,),
         ],),
