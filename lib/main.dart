@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_flutter1/pantallaDos.dart';
+import 'package:app_flutter1/pantallaTres.dart';
 
 const List<String> colors = ["ffef5777","ff4bcffa","ffffffff", "ff4bcffa","ff0be881","ffef5777","ff4bcffa", "ff0be881"];
 
@@ -66,6 +67,17 @@ class MyApp extends StatelessWidget {
                   ));
                   //print("cambiando a la siguiente vista..");
                   print(datos);
+                },
+              ),
+              ListTile(
+                title: Text("Formuario"),
+                trailing: Icon(Icons.contact_mail),
+                onTap: (){
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context)=> PantallaTres(
+                      datosRecibidos: "Datos de la pantalla 1",
+                    )
+                  ));
                 },
               )
             ],
